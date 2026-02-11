@@ -63,12 +63,19 @@ function VariantLive(props: { fallback?: JSX.Element }) {
  * Discord-like: Always visible, shows participants count even when empty
  */
 function VariantPreview(props: { channel: Channel }) {
+  const participants = () => [...props.channel.voiceParticipants.values()];
+  
+  // Debug logging
+  console.log('[VoiceChannelPreview] Channel:', props.channel.id, 'Participants:', participants().length, participants());
+  
   return (
-    <Base>
-      <For each={[...props.channel.voiceParticipants.values()]}>
-        {(participant) => <ParticipantPreview participant={participant} />}
-      </For>
-    </Base>
+    <Show when={participants().length > 0}>
+      <Base>
+        <For each={participants()}>
+          {(participant) => <ParticipantPreview participant={participant} />}
+        </For>
+      </Base>
+    </Show>
   );
 }
 
