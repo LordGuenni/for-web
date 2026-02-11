@@ -1,6 +1,5 @@
 import { Show } from "solid-js";
 
-import { useLingui } from "@lingui-solid/solid/macro";
 import { styled } from "styled-system/jsx";
 
 import { useClient } from "@revolt/client";
@@ -15,7 +14,6 @@ import { Symbol } from "@revolt/ui/components/utils/Symbol";
 export function PersistentVoiceControls() {
   const voice = useVoice();
   const client = useClient();
-  const { t } = useLingui();
 
   return (
     <Show when={voice.room()}>
@@ -42,11 +40,11 @@ export function PersistentVoiceControls() {
               tooltip: voice.speakingPermission
                 ? {
                     placement: "top",
-                    content: voice.microphone() ? t`Mute` : t`Unmute`,
+                    content: voice.microphone() ? "Mute" : "Unmute",
                   }
                 : {
                     placement: "top",
-                    content: t`Missing permission`,
+                    content: "Missing permission",
                   },
             }}
             isDisabled={!voice.speakingPermission}
@@ -64,11 +62,11 @@ export function PersistentVoiceControls() {
               tooltip: voice.listenPermission
                 ? {
                     placement: "top",
-                    content: voice.deafen() ? t`Undeafen` : t`Deafen`,
+                    content: voice.deafen() ? "Undeafen" : "Deafen",
                   }
                 : {
                     placement: "top",
-                    content: t`Missing permission`,
+                    content: "Missing permission",
                   },
             }}
             isDisabled={!voice.listenPermission}
@@ -87,7 +85,7 @@ export function PersistentVoiceControls() {
             use:floating={{
               tooltip: {
                 placement: "top",
-                content: t`Camera (Coming soon)`,
+                content: "Camera (Coming soon)",
               },
             }}
             isDisabled
@@ -101,7 +99,7 @@ export function PersistentVoiceControls() {
             use:floating={{
               tooltip: {
                 placement: "top",
-                content: t`Screen Share (Coming soon)`,
+                content: "Screen Share (Coming soon)",
               },
             }}
             isDisabled
@@ -116,7 +114,7 @@ export function PersistentVoiceControls() {
             use:floating={{
               tooltip: {
                 placement: "top",
-                content: t`Disconnect`,
+                content: "Disconnect",
               },
             }}
           >
