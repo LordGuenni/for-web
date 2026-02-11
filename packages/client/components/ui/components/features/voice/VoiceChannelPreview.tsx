@@ -25,15 +25,20 @@ import { VoiceStatefulUserIcons } from "./VoiceStatefulUserIcons";
  * Render a preview of users (or the active participants) for a given channel
  *
  * Designed for the server sidebar to be below channels
+ * 
+ * Discord-like behavior: Always show participants, even when not connected
  */
 export function VoiceChannelPreview(props: { channel: Channel }) {
   return (
-    <InRoom
-      channelId={props.channel.id}
-      fallback={<VariantPreview channel={props.channel} />}
-    >
-      <VariantLive />
-    </InRoom>
+    <>
+      {/* Always show preview of participants */}
+      <VariantPreview channel={props.channel} />
+      
+      {/* If we're in the room, also show live participants */}
+      <InRoom channelId={props.channel.id}>
+        <VariantLive />
+      </InRoom>
+    </>
   );
 }
 
@@ -55,16 +60,15 @@ function VariantLive() {
 
 /**
  * Use LiveKit as the source of truth
+ * Discord-like: Always visible, shows participants count even when empty
  */
 function VariantPreview(props: { channel: Channel }) {
   return (
-    <Show when={props.channel.voiceParticipants.size}>
-      <Base>
-        <For each={[...props.channel.voiceParticipants.values()]}>
-          {(participant) => <ParticipantPreview participant={participant} />}
-        </For>
-      </Base>
-    </Show>
+    <Base>
+      <For each={[...props.channel.voiceParticipants.values()]}>
+        {(participant) => <ParticipantPreview participant={participant} />}
+      </For>
+    </Base>
   );
 }
 
