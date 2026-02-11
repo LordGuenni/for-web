@@ -59,23 +59,28 @@ function VariantLive(props: { fallback?: JSX.Element }) {
 }
 
 /**
- * Use LiveKit as the source of truth
- * Discord-like: Always visible, shows participants count even when empty
+ * Use API as the source of truth when not connected
+ * 
+ * NOTE: Due to backend limitation, voice events are only published to channel subscribers,
+ * not all server members. This means you may only see participants if:
+ * 1. You receive initial state from Ready event
+ * 2. You are subscribed to this specific channel
+ * 
+ * Full Discord-like behavior requires backend changes to broadcast voice events to server scope.
  */
 function VariantPreview(props: { channel: Channel }) {
   const participants = () => [...props.channel.voiceParticipants.values()];
   
-  // Debug logging
-  console.log('[VoiceChannelPreview] Channel:', props.channel.id, 'Participants:', participants().length, participants());
+  // Debug logging to help diagnose visibility issues
+  console.log('[VoiceChannelPreview]', props.channel.name || props.channel.id, '- Participants:', participants().length);
   
+  // Always render Base container, even if empty (keeps layout consistent)
   return (
-    <Show when={participants().length > 0}>
-      <Base>
-        <For each={participants()}>
-          {(participant) => <ParticipantPreview participant={participant} />}
-        </For>
-      </Base>
-    </Show>
+    <Base>
+      <For each={participants()}>
+        {(participant) => <ParticipantPreview participant={participant} />}
+      </For>
+    </Base>
   );
 }
 
