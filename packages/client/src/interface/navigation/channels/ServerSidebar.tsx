@@ -33,6 +33,7 @@ import {
   typography,
 } from "@revolt/ui";
 import { VoiceChannelPreview } from "@revolt/ui/components/features/voice/VoiceChannelPreview";
+import { PersistentVoiceControls } from "@revolt/ui/components/features/voice/PersistentVoiceControls";
 import { createDragHandle } from "@revolt/ui/components/utils/Draggable";
 import { Symbol } from "@revolt/ui/components/utils/Symbol";
 
@@ -248,6 +249,7 @@ export const ServerSidebar = (props: Props) => {
           )}
         </Draggable>
       </div>
+      <PersistentVoiceControls />
     </SidebarBase>
   );
 };

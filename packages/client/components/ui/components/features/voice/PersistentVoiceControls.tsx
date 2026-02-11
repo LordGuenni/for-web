@@ -87,12 +87,26 @@ export function PersistentVoiceControls() {
             use:floating={{
               tooltip: {
                 placement: "top",
-                content: "Coming soon! 👀",
+                content: t`Camera (Coming soon)`,
               },
             }}
             isDisabled
           >
-            <Symbol>settings</Symbol>
+            <Symbol>camera_video</Symbol>
+          </IconButton>
+
+          <IconButton
+            size="sm"
+            variant="tonal"
+            use:floating={{
+              tooltip: {
+                placement: "top",
+                content: t`Screen Share (Coming soon)`,
+              },
+            }}
+            isDisabled
+          >
+            <Symbol>screen_share</Symbol>
           </IconButton>
 
           <IconButton
@@ -116,22 +130,16 @@ export function PersistentVoiceControls() {
 
 const Container = styled("div", {
   base: {
-    position: "fixed",
-    bottom: 0,
-    left: 0,
-    zIndex: 100,
-
     display: "flex",
     flexDirection: "column",
     gap: "var(--gap-sm)",
 
-    width: "240px",
     padding: "var(--gap-md)",
     margin: "var(--gap-md)",
+    marginTop: "auto",
 
     borderRadius: "var(--borderRadius-lg)",
     background: "var(--md-sys-color-surface-container)",
-    boxShadow: "var(--shadow-lg)",
   },
 });
 
@@ -176,7 +184,7 @@ const ChannelName = styled("span", {
 const Controls = styled("div", {
   base: {
     display: "flex",
-    gap: "var(--gap-sm)",
+    gap: "var(--gap-xs)",
     justifyContent: "space-between",
   },
 });

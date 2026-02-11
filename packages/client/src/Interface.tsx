@@ -14,7 +14,6 @@ import { Navigate, useBeforeLeave, useLocation } from "@revolt/routing";
 import { useState } from "@revolt/state";
 import { LAYOUT_SECTIONS } from "@revolt/state/stores/Layout";
 import { CircularProgress } from "@revolt/ui";
-import { PersistentVoiceControls } from "@revolt/ui/components/features/voice/PersistentVoiceControls";
 
 import { Sidebar } from "./interface/Sidebar";
 
@@ -109,7 +108,6 @@ const Interface = (props: { children: JSX.Element }) => {
         </Switch>
 
         <NotificationsWorker />
-        <PersistentVoiceControls />
       </div>
     </MessageCache>
   );

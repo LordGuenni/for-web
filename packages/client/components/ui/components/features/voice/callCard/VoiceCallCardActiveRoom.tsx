@@ -41,7 +41,8 @@ export function VoiceCallCardActiveRoom() {
       </Call>
 
       <VoiceCallCardStatus />
-      <VoiceCallCardActions size="sm" />
+      {/* Voice controls moved to sidebar - Discord-like UI */}
+      {/* <VoiceCallCardActions size="sm" /> */}
     </View>
   );
 }
