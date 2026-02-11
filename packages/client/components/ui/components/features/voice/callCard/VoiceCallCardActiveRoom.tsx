@@ -133,11 +133,25 @@ function UserTile() {
 
   const user = useUser(participant.identity);
 
+  let videoRef: HTMLDivElement | undefined;
+
+  const toggleFullscreen = () => {
+    if (!videoRef) return;
+    if (!document.fullscreenElement) {
+      videoRef.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  };
+
   return (
     <div
+      ref={videoRef}
       class={tile({
         speaking: isSpeaking(),
       })}
+      onClick={toggleFullscreen}
+      style={{ cursor: "pointer" }}
       use:floating={{
         userCard: {
           user: user().user!,
@@ -176,6 +190,9 @@ function UserTile() {
             userId={participant.identity}
             muted={isMuted()}
           />
+          <Show when={isTrackReference(track)}>
+            <Symbol size={18}>fullscreen</Symbol>
+          </Show>
         </OverlayInner>
       </Overlay>
     </div>
@@ -203,8 +220,19 @@ function ScreenshareTile() {
     source: Track.Source.ScreenShareAudio,
   });
 
+  let videoRef: HTMLDivElement | undefined;
+
+  const toggleFullscreen = () => {
+    if (!videoRef) return;
+    if (!document.fullscreenElement) {
+      videoRef.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  };
+
   return (
-    <div class={tile() + " group"}>
+    <div ref={videoRef} class={tile() + " group"} onClick={toggleFullscreen} style={{ cursor: "pointer" }}>
       <VideoTrack
         style={{ "grid-area": "1/1" }}
         trackRef={track as TrackReference}
@@ -217,6 +245,7 @@ function ScreenshareTile() {
           <Show when={isMuted()}>
             <Symbol size={18}>no_sound</Symbol>
           </Show>
+          <Symbol size={18}>fullscreen</Symbol>
         </OverlayInner>
       </Overlay>
     </div>
