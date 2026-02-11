@@ -1,4 +1,4 @@
-import { For, Show, splitProps } from "solid-js";
+import { For, JSX, Show, splitProps } from "solid-js";
 import {
   TrackLoop,
   useEnsureParticipant,
@@ -30,31 +30,31 @@ import { VoiceStatefulUserIcons } from "./VoiceStatefulUserIcons";
  */
 export function VoiceChannelPreview(props: { channel: Channel }) {
   return (
-    <>
-      {/* Always show preview of participants */}
-      <VariantPreview channel={props.channel} />
-      
-      {/* If we're in the room, also show live participants */}
-      <InRoom channelId={props.channel.id}>
-        <VariantLive />
-      </InRoom>
-    </>
+    <InRoom
+      channelId={props.channel.id}
+      fallback={<VariantPreview channel={props.channel} />}
+    >
+      {/* When in room, show live participants, but also fall back to preview if no tracks */}
+      <VariantLive fallback={<VariantPreview channel={props.channel} />} />
+    </InRoom>
   );
 }
 
 /**
- * Use API as the source of truth
+ * Use API as the source of truth when connected
  */
-function VariantLive() {
+function VariantLive(props: { fallback?: JSX.Element }) {
   const tracks = useTracks(
     [{ source: Track.Source.Camera, withPlaceholder: true }],
     { onlySubscribed: false },
   );
 
   return (
-    <Base>
-      <TrackLoop tracks={tracks}>{() => <ParticipantLive />}</TrackLoop>
-    </Base>
+    <Show when={tracks().length > 0} fallback={props.fallback}>
+      <Base>
+        <TrackLoop tracks={tracks}>{() => <ParticipantLive />}</TrackLoop>
+      </Base>
+    </Show>
   );
 }
 

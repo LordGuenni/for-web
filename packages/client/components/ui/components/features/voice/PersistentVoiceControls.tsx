@@ -3,8 +3,8 @@ import { Show } from "solid-js";
 import { useLingui } from "@lingui-solid/solid/macro";
 import { styled } from "styled-system/jsx";
 
+import { useClient } from "@revolt/client";
 import { useVoice } from "@revolt/rtc";
-import { useUser } from "@revolt/markdown/users";
 import { Avatar, IconButton } from "@revolt/ui/components/design";
 import { Symbol } from "@revolt/ui/components/utils/Symbol";
 
@@ -14,10 +14,8 @@ import { Symbol } from "@revolt/ui/components/utils/Symbol";
  */
 export function PersistentVoiceControls() {
   const voice = useVoice();
+  const client = useClient();
   const { t } = useLingui();
-
-  // Get current user info
-  const currentUser = useUser(() => voice.room()?.localParticipant.identity || "");
 
   return (
     <Show when={voice.room()}>
@@ -25,12 +23,12 @@ export function PersistentVoiceControls() {
         <UserInfo>
           <Avatar
             size={32}
-            src={currentUser().avatar}
-            fallback={currentUser().username}
+            src={client().user!.animatedAvatarURL}
+            fallback={client().user!.displayName}
             interactive={false}
           />
           <UserDetails>
-            <Username>{currentUser().username}</Username>
+            <Username>{client().user!.displayName}</Username>
             <ChannelName>{voice.channel()?.name || "Voice Channel"}</ChannelName>
           </UserDetails>
         </UserInfo>
