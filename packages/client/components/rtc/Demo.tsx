@@ -101,8 +101,8 @@ export function FakeParticipants() {
 
 const Tile = styled("div", {
   base: {
+    flex: "1 1 auto",
     minWidth: "240px",
-    maxWidth: "240px",
     display: "grid",
     aspectRatio: "16/9",
     transition: ".3s ease all",
