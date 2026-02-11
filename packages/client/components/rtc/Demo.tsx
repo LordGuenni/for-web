@@ -53,13 +53,9 @@ export function RoomParticipants() {
         overflowX: "hidden",
         overflowY: "scroll",
 
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-
-        // display: 'grid',
-        // gridAutoRows:'1fr',
-        // gridTemplateColumns:'repeat(auto-fill, minmax(0, 1fr))',
+        display: "grid",
+        gridAutoRows: "1fr",
+        gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
       })}
     >
       <TrackLoop tracks={tracks}>{() => <LeParticipant />}</TrackLoop>
