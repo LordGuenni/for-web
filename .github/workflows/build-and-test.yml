@@ -1,16 +1,7 @@
 name: Build & Test
 
 on:
-  push:
-    paths-ignore:
-      - ".github/**"
-      - "!.github/workflows/build-and-test.yml"
-      - ".vscode/**"
-      - "doc/**"
-      - "lifecycle/**"
-      - ".gitignore"
-      - "README.md"
-  pull_request:
+  workflow_dispatch:
 
 jobs:
   i18n:
