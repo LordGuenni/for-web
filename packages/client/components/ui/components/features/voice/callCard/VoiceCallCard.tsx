@@ -325,7 +325,8 @@ const Card = styled("div", {
     active: {
       true: {
         width: "100%",
-        height: "40vh",
+        aspectRatio: "16/9",
+        maxHeight: "60vh",
       },
       false: {
         width: "360px",
