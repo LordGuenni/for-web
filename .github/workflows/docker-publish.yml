@@ -39,6 +39,8 @@ jobs:
           push: true
           tags: ${{ env.IMAGE_NAME_LC }}:latest
           platforms: linux/arm64/v8
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           build-args: |
             STOATCHAT_WEB_REF=main
             CACHE_BUST=${{ github.sha }}

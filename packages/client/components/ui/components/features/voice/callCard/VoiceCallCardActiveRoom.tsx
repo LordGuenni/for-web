@@ -263,6 +263,8 @@ const tile = cva({
     height: "100%",
     minHeight: 0,
     display: "grid",
+    gridTemplateRows: "minmax(0, 1fr)",
+    gridTemplateColumns: "minmax(0, 1fr)",
     transition: ".3s ease all",
     borderRadius: "var(--borderRadius-lg)",
 
