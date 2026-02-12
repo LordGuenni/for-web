@@ -53,9 +53,9 @@ export function RoomParticipants() {
         overflowX: "hidden",
         overflowY: "scroll",
 
-        display: "grid",
-        gridAutoRows: "minmax(200px, 1fr)",
-        gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+        display: "flex",
+        flexWrap: "wrap",
+        alignContent: "center",
       })}
     >
       <TrackLoop tracks={tracks}>{() => <LeParticipant />}</TrackLoop>
@@ -97,7 +97,7 @@ export function FakeParticipants() {
 
 const Tile = styled("div", {
   base: {
-    width: "100%",
+    flex: "1 1 240px",
     display: "grid",
     aspectRatio: "16/9",
     transition: ".3s ease all",
