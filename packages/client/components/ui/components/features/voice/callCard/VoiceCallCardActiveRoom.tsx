@@ -95,10 +95,11 @@ function Participants() {
 
 const Grid = styled("div", {
   base: {
-    display: "grid",
+    display: "flex",
+    flexWrap: "wrap",
+    alignContent: "center",
     gap: "var(--gap-md)",
     padding: "var(--gap-md)",
-    gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
   },
 });
 
@@ -254,6 +255,7 @@ function ScreenshareTile() {
 
 const tile = cva({
   base: {
+    flex: "1 1 240px",
     display: "grid",
     aspectRatio: "16/9",
     transition: ".3s ease all",
