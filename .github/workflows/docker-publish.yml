@@ -16,7 +16,7 @@ jobs:
         include:
           - runner: ubuntu-latest
             platform: linux/amd64
-          - runner: macos-26-arm64-beta
+          - runner: macos-26
             platform: linux/arm64/v8
     runs-on: ${{ matrix.runner }}
     permissions:
