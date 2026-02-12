@@ -260,9 +260,9 @@ const tile = cva({
   base: {
     flex: "1 1 240px",
     maxWidth: "100%",
-    maxHeight: "100%",
+    height: "100%",
+    minHeight: 0,
     display: "grid",
-    aspectRatio: "16/9",
     transition: ".3s ease all",
     borderRadius: "var(--borderRadius-lg)",
 
