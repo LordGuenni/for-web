@@ -65,7 +65,7 @@ const Call = styled("div", {
   base: {
     flexGrow: 1,
     minHeight: 0,
-    overflowY: "scroll",
+    overflow: "hidden",
   },
 });
 
@@ -102,6 +102,7 @@ const Grid = styled("div", {
     alignContent: "center",
     gap: "var(--gap-md)",
     padding: "var(--gap-md)",
+    overflow: "hidden",
   },
 });
 
@@ -259,6 +260,7 @@ const tile = cva({
   base: {
     flex: "1 1 240px",
     maxWidth: "100%",
+    maxHeight: "100%",
     display: "grid",
     aspectRatio: "16/9",
     transition: ".3s ease all",

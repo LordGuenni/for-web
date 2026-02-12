@@ -2,8 +2,6 @@ name: Release Webhook
 
 on:
   workflow_dispatch:
-  release:
-    types: [published]
 
 jobs:
   release-webhook:

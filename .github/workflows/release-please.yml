@@ -1,8 +1,6 @@
 name: Release Please
 
 on:
-  push:
-    branches: [main] # updates/opens the release PR when commits land on main
   workflow_dispatch:
 
 permissions:
