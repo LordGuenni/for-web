@@ -95,8 +95,10 @@ function Participants() {
 
 const Grid = styled("div", {
   base: {
+    height: "100%",
     display: "flex",
     flexWrap: "wrap",
+    justifyContent: "center",
     alignContent: "center",
     gap: "var(--gap-md)",
     padding: "var(--gap-md)",
@@ -177,7 +179,7 @@ function UserTile() {
       >
         <Match when={isTrackReference(track)}>
           <VideoTrack
-            style={{ "grid-area": "1/1" }}
+            style={{ "grid-area": "1/1", "object-fit": "contain", width: "100%", height: "100%" }}
             trackRef={track as TrackReference}
             manageSubscription={true}
           />
@@ -235,7 +237,7 @@ function ScreenshareTile() {
   return (
     <div ref={videoRef} class={tile() + " group"} onClick={toggleFullscreen} style={{ cursor: "pointer" }}>
       <VideoTrack
-        style={{ "grid-area": "1/1" }}
+        style={{ "grid-area": "1/1", "object-fit": "contain", width: "100%", height: "100%" }}
         trackRef={track as TrackReference}
         manageSubscription={true}
       />
@@ -256,6 +258,7 @@ function ScreenshareTile() {
 const tile = cva({
   base: {
     flex: "1 1 240px",
+    maxWidth: "100%",
     display: "grid",
     aspectRatio: "16/9",
     transition: ".3s ease all",
