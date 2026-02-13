@@ -25,8 +25,6 @@ import { VoiceStatefulUserIcons } from "./VoiceStatefulUserIcons";
  * Render a preview of users (or the active participants) for a given channel
  *
  * Designed for the server sidebar to be below channels
- * 
- * Discord-like behavior: Always show participants, even when not connected
  */
 export function VoiceChannelPreview(props: { channel: Channel }) {
   return (
@@ -60,21 +58,10 @@ function VariantLive(props: { fallback?: JSX.Element }) {
 
 /**
  * Use API as the source of truth when not connected
- * 
- * NOTE: Due to backend limitation, voice events are only published to channel subscribers,
- * not all server members. This means you may only see participants if:
- * 1. You receive initial state from Ready event
- * 2. You are subscribed to this specific channel
- * 
- * Full Discord-like behavior requires backend changes to broadcast voice events to server scope.
  */
 function VariantPreview(props: { channel: Channel }) {
   const participants = () => [...props.channel.voiceParticipants.values()];
   
-  // Debug logging to help diagnose visibility issues
-  console.log('[VoiceChannelPreview]', props.channel.name || props.channel.id, '- Participants:', participants().length);
-  
-  // Always render Base container, even if empty (keeps layout consistent)
   return (
     <Base>
       <For each={participants()}>

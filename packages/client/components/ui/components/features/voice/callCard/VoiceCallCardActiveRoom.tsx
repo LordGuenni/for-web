@@ -290,6 +290,7 @@ const Overlay = styled("div", {
   base: {
     minWidth: 0,
     gridArea: "1/1",
+    zIndex: 1,
 
     padding: "var(--gap-md) var(--gap-lg)",
 
