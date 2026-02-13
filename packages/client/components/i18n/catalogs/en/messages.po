@@ -610,6 +610,10 @@ msgstr "Chat Input"
 msgid "Check your mail!"
 msgstr "Check your mail!"
 
+#: components/auth/src/flows/FlowLogin.tsx
+msgid "Choose a username"
+msgstr "Choose a username"
+
 #: components/modal/modals/Onboarding.tsx
 msgid "Choose username"
 msgstr "Choose username"
@@ -1786,6 +1790,10 @@ msgstr "Move Members"
 msgid "Move members between voice channels"
 msgstr "Move members between voice channels"
 
+#: components/i18n/errors.ts
+msgid "Multi-factor authentication is already enabled for this account."
+msgstr "Multi-factor authentication is already enabled for this account."
+
 #: components/app/menus/UserContextMenu.tsx
 msgid "Mute"
 msgstr "Mute"
@@ -2482,8 +2490,12 @@ msgid "Something is wrong with your request, {0}."
 msgstr "Something is wrong with your request, {0}."
 
 #: components/i18n/errors.ts
-msgid "Something went wrong! Try again later."
-msgstr "Something went wrong! Try again later."
+msgid "Something went wrong! {error}"
+msgstr "Something went wrong! {error}"
+
+#: components/i18n/errors.ts
+#~ msgid "Something went wrong! Try again later."
+#~ msgstr "Something went wrong! Try again later."
 
 #: components/app/interface/settings/user/Notifications.tsx
 msgid "Sounds"
@@ -2618,9 +2630,17 @@ msgstr "That action had no effect."
 msgid "The file \"{0}\" ({fileSize}) exceeds the maximum size limit of {maxSizeFormatted}."
 msgstr "The file \"{0}\" ({fileSize}) exceeds the maximum size limit of {maxSizeFormatted}."
 
+#: components/i18n/errors.ts
+msgid "The password is too short."
+msgstr "The password is too short."
+
 #: components/app/interface/settings/user/Sync.tsx
 msgid "Theme"
 msgstr "Theme"
+
+#: components/i18n/errors.ts
+msgid "This account is not activated! Please check your account's inbox and try again."
+msgstr "This account is not activated! Please check your account's inbox and try again."
 
 #: components/i18n/errors.ts
 msgid "This bot is private and can only be added by the creator."
@@ -2675,6 +2695,10 @@ msgstr "This message is already pinned."
 msgid "This message is empty and has not been sent."
 msgstr "This message is empty and has not been sent."
 
+#: components/i18n/errors.ts
+msgid "This password has previously appeared in security leaks, please use another password."
+msgstr "This password has previously appeared in security leaks, please use another password."
+
 #: components/app/interface/settings/server/Overview.tsx
 msgid "This server is about..."
 msgstr "This server is about..."
@@ -2723,6 +2747,11 @@ msgstr "Trending GIFs"
 #: components/app/menus/UserContextMenu.tsx
 msgid "Unblock user"
 msgstr "Unblock user"
+
+#. placeholder {0}: err.type
+#: components/i18n/errors.ts
+msgid "Uncaught Stoat error: {0}"
+msgstr "Uncaught Stoat error: {0}"
 
 #: components/markdown/plugins/anchors.tsx
 msgid "Unknown Server"
@@ -2944,8 +2973,8 @@ msgstr "Webhooks"
 
 #: src/interface/Home.tsx
 #: components/auth/src/flows/FlowLogin.tsx
-msgid "Welcome to"
-msgstr "Welcome to"
+#~ msgid "Welcome to"
+#~ msgstr "Welcome to"
 
 #: components/auth/src/flows/FlowLogin.tsx
 msgid "Welcome!"
@@ -3058,6 +3087,10 @@ msgstr "You do not have permission to do this."
 #: components/ui/components/features/messaging/composition/MessageBox.tsx
 msgid "You don't have permission to send messages in this channel."
 msgstr "You don't have permission to send messages in this channel."
+
+#: components/i18n/errors.ts
+msgid "You have been locked out for entering a wrong password multiple times. Please wait a couple minutes and try again."
+msgstr "You have been locked out for entering a wrong password multiple times. Please wait a couple minutes and try again."
 
 #: components/i18n/errors.ts
 msgid "You have this user blocked."
