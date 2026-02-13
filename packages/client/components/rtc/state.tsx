@@ -86,6 +86,8 @@ class Voice {
     this.disconnect();
 
     const room = new Room({
+      dynacast: true,
+      singlePeerConnection: true,
       audioCaptureDefaults: {
         deviceId: this.#settings.preferredAudioInputDevice,
         echoCancellation: this.#settings.echoCancellation,
