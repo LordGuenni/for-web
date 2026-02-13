@@ -180,7 +180,7 @@ function UserTile() {
       >
         <Match when={isTrackReference(track)}>
           <VideoTrack
-            style={{ "grid-area": "1/1", "object-fit": "contain", width: "100%", height: "100%" }}
+            style={{ "grid-area": "1/1", "object-fit": "cover", width: "100%", height: "100%", "border-radius": "inherit" }}
             trackRef={track as TrackReference}
             manageSubscription={true}
           />
