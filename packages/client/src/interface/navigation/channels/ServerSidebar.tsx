@@ -18,7 +18,6 @@ import { TextWithEmoji } from "@revolt/markdown";
 import { useModals } from "@revolt/modal";
 import { useNavigate } from "@revolt/routing";
 import { useVoice } from "@revolt/rtc";
-import { useVoiceParticipantPolling } from "@revolt/rtc/pollVoiceParticipants";
 import { useState } from "@revolt/state";
 import {
   Column,
@@ -108,14 +107,6 @@ export const ServerSidebar = (props: Props) => {
   /** Gets a list of channels that are currently not hidden inside a closed category */
   const visibleChannels = () =>
     props.server.orderedChannels.flatMap((category) => category.channels);
-
-  /** Get only voice channels for polling */
-  const voiceChannels = () =>
-    visibleChannels().filter((channel) => channel.type === "VoiceChannel");
-
-  // Poll voice participants for all visible voice channels
-  // This works around the backend limitation where voice events are only sent to channel subscribers
-  useVoiceParticipantPolling(state.client, voiceChannels, 5000);
 
   // TODO: when navigating channels, we want to add aria-keyshortcuts={localized-shortcut} to the next/previous channels
   // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-keyshortcuts
