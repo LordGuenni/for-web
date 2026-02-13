@@ -101,7 +101,7 @@ function Categories() {
     queryFn: () => {
       const [authHeader, authHeaderValue] = client()!.authenticationHeader;
 
-      return fetch("https://api.gifbox.me/categories?locale=en_US", {
+      return fetch("https://stout.stamer.dev/gifbox/categories?locale=en_US", {
         headers: {
           [authHeader]: authHeaderValue,
         },
@@ -116,7 +116,7 @@ function Categories() {
     queryFn: () => {
       const [authHeader, authHeaderValue] = client()!.authenticationHeader;
 
-      return fetch("https://api.gifbox.me/trending?locale=en_US&limit=1", {
+      return fetch("https://stout.stamer.dev/gifbox/trending?locale=en_US&limit=1", {
         headers: {
           [authHeader]: authHeaderValue,
         },
@@ -220,7 +220,7 @@ function GifSearch(props: { query: string }) {
       const [authHeader, authHeaderValue] = client()!.authenticationHeader;
 
       return fetch(
-        "https://api.gifbox.me/" +
+        "https://stout.stamer.dev/gifbox/" +
           (props.query === "trending"
             ? `trending?locale=en_US`
             : `search?locale=en_US&query=${encodeURIComponent(props.query)}`),
