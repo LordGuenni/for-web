@@ -117,7 +117,7 @@ export function ServerContextMenu(props: { server: Server }) {
    */
   function openAdminPanel() {
     window.open(
-      `${env.DEFAULT_ADMIN_PANEL_URL}/panel/inspect/server/${props.server.id}`,
+      `${env.DEFAULT_ADMIN_PANEL_URL}/panel/revolt/inspect/server/${props.server.id}`,
       "_blank",
     );
   }

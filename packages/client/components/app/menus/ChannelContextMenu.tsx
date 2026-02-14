@@ -85,7 +85,7 @@ export function ChannelContextMenu(props: { channel: Channel }) {
    */
   function openAdminPanel() {
     window.open(
-      `${env.DEFAULT_ADMIN_PANEL_URL}/panel/inspect/channel/${props.channel.id}`,
+      `${env.DEFAULT_ADMIN_PANEL_URL}/panel/revolt/inspect/channel/${props.channel.id}`,
       "_blank",
     );
   }

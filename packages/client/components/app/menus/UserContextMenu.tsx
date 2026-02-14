@@ -179,7 +179,7 @@ export function UserContextMenu(props: {
    */
   function openAdminPanel() {
     window.open(
-      `${env.DEFAULT_ADMIN_PANEL_URL}/panel/inspect/user/${props.user.id}`,
+      `${env.DEFAULT_ADMIN_PANEL_URL}/panel/revolt/inspect/user/${props.user.id}`,
       "_blank",
     );
   }
