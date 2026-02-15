@@ -62,7 +62,7 @@ export function GifPicker() {
   const client = useClient();
 
   // Kick off gifbox config fetch from API root
-  ensureGifboxConfig(client()?.apiURL);
+  ensureGifboxConfig(import.meta.env.VITE_API_URL);
 
   const fliterLowercase = () => filter().toLowerCase();
 
