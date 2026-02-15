@@ -310,7 +310,7 @@ const GifItem = (props: {
       style={props.style as string}
       tabIndex={props.tabIndex}
       src={props.item.media_formats.tinywebm.url}
-      onClick={() => onMessage(props.item.url)}
+      onClick={() => onMessage(props.item.media_formats.gif.url)}
     />
   );
 };
