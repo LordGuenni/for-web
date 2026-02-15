@@ -38,7 +38,7 @@ export function GifPicker() {
   const fliterLowercase = () => filter().toLowerCase();
 
   const placeholderText = () =>
-    client()?.configuration?.features.gifbox.attribution || "Search for GIFs...";
+    ((client()?.configuration?.features as any)?.gifbox?.attribution) || "Search for GIFs...";
 
   return (
     <Stack>
@@ -104,7 +104,7 @@ function Categories() {
     queryKey: ["trendingGifCategories"],
     queryFn: () => {
       const [authHeader, authHeaderValue] = client()!.authenticationHeader;
-      const gifboxUrl = client()!.configuration!.features.gifbox.url;
+      const gifboxUrl = (client()!.configuration!.features as any).gifbox.url;
 
       return fetch(`${gifboxUrl}/categories?locale=en_US`, {
         headers: {
@@ -120,7 +120,7 @@ function Categories() {
     queryKey: ["trendingGif1"],
     queryFn: () => {
       const [authHeader, authHeaderValue] = client()!.authenticationHeader;
-      const gifboxUrl = client()!.configuration!.features.gifbox.url;
+      const gifboxUrl = (client()!.configuration!.features as any).gifbox.url;
 
       return fetch(`${gifboxUrl}/trending?locale=en_US&limit=1`, {
         headers: {
@@ -224,7 +224,7 @@ function GifSearch(props: { query: string }) {
     queryKey: ["gifs", props.query],
     queryFn: () => {
       const [authHeader, authHeaderValue] = client()!.authenticationHeader;
-      const gifboxUrl = client()!.configuration!.features.gifbox.url;
+      const gifboxUrl = (client()!.configuration!.features as any).gifbox.url;
 
       return fetch(
         gifboxUrl +
