@@ -94,7 +94,7 @@ export function MessageContextMenu(props: { message?: Message; file?: File }) {
    */
   function openAdminPanel() {
     window.open(
-      `${env.DEFAULT_ADMIN_PANEL_URL}/panel/inspect/message/${props.message!.id}`,
+      `${env.DEFAULT_ADMIN_PANEL_URL}/panel/revolt/inspect/message/${props.message!.id}`,
       "_blank",
     );
   }

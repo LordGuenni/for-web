@@ -100,8 +100,9 @@ function Categories() {
     queryKey: ["trendingGifCategories"],
     queryFn: () => {
       const [authHeader, authHeaderValue] = client()!.authenticationHeader;
+      const gifboxUrl = client()!.configuration!.features.gifbox.url;
 
-      return fetch("https://api.gifbox.me/categories?locale=en_US", {
+      return fetch(`${gifboxUrl}/categories?locale=en_US`, {
         headers: {
           [authHeader]: authHeaderValue,
         },
@@ -115,8 +116,9 @@ function Categories() {
     queryKey: ["trendingGif1"],
     queryFn: () => {
       const [authHeader, authHeaderValue] = client()!.authenticationHeader;
+      const gifboxUrl = client()!.configuration!.features.gifbox.url;
 
-      return fetch("https://api.gifbox.me/trending?locale=en_US&limit=1", {
+      return fetch(`${gifboxUrl}/trending?locale=en_US&limit=1`, {
         headers: {
           [authHeader]: authHeaderValue,
         },
@@ -218,9 +220,11 @@ function GifSearch(props: { query: string }) {
     queryKey: ["gifs", props.query],
     queryFn: () => {
       const [authHeader, authHeaderValue] = client()!.authenticationHeader;
+      const gifboxUrl = client()!.configuration!.features.gifbox.url;
 
       return fetch(
-        "https://api.gifbox.me/" +
+        gifboxUrl +
+          "/" +
           (props.query === "trending"
             ? `trending?locale=en_US`
             : `search?locale=en_US&query=${encodeURIComponent(props.query)}`),
