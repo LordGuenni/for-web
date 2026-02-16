@@ -111,13 +111,11 @@ class Voice {
     room.addListener("connected", () => {
       this.#setState("CONNECTED");
       if (this.speakingPermission)
-        room.localParticipant
-          .setMicrophoneEnabled(true)
-          .then((track) => {
-            this.#setMicrophone(typeof track !== "undefined");
-            if (this.#settings.rnnoise)
-              track?.audioTrack?.setProcessor(new DenoiseTrackProcessor());
-          });
+        room.localParticipant.setMicrophoneEnabled(true).then((track) => {
+          this.#setMicrophone(typeof track !== "undefined");
+          if (this.#settings.rnnoise)
+            track?.audioTrack?.setProcessor(new DenoiseTrackProcessor());
+        });
     });
 
     room.addListener("disconnected", () => this.#setState("DISCONNECTED"));
