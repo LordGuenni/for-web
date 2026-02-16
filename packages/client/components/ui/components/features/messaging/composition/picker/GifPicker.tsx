@@ -131,7 +131,6 @@ function Categories() {
 
   const trendingCategories = useQuery<GifCategory[]>(() => ({
     queryKey: ["trendingGifCategories"],
-    enabled: !!gifboxConfig(),
     queryFn: () => {
       const [authHeader, authHeaderValue] = client()!.authenticationHeader;
       const gifboxUrl = gifboxConfig()!.url;
@@ -142,13 +141,13 @@ function Categories() {
         },
       }).then((r) => r.json());
     },
+    enabled: !!gifboxConfig(),
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
   }));
 
   const trendingGif = useQuery<GifResult | null>(() => ({
     queryKey: ["trendingGif1"],
-    enabled: !!gifboxConfig(),
     queryFn: () => {
       const [authHeader, authHeaderValue] = client()!.authenticationHeader;
       const gifboxUrl = gifboxConfig()!.url;
@@ -161,6 +160,7 @@ function Categories() {
         .then((r) => r.json())
         .then((resp) => resp.results[0]);
     },
+    enabled: !!gifboxConfig(),
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
     initialData: null,
@@ -253,7 +253,6 @@ function GifSearch(props: { query: string }) {
 
   const search = useQuery<GifResult[]>(() => ({
     queryKey: ["gifs", props.query],
-    enabled: !!gifboxConfig(),
     queryFn: () => {
       const [authHeader, authHeaderValue] = client()!.authenticationHeader;
       const gifboxUrl = gifboxConfig()!.url;
@@ -273,6 +272,7 @@ function GifSearch(props: { query: string }) {
         .then((r) => r.json())
         .then((resp) => resp.results);
     },
+    enabled: !!gifboxConfig(),
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
   }));
