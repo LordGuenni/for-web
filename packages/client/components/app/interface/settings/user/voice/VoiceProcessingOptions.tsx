@@ -22,7 +22,9 @@ export function VoiceProcessingOptions() {
             {
               const newState = !state.voice.noiseSupression;
               state.voice.noiseSupression = newState;
-              state.voice.rnnoise = !newState;
+              if (newState) {
+                state.voice.rnnoise = false;
+              }
             }
           }
         >
@@ -35,11 +37,13 @@ export function VoiceProcessingOptions() {
             {
               const newState = !state.voice.rnnoise;
               state.voice.rnnoise = newState;
-              state.voice.noiseSupression = !newState;
+              if (newState) {
+                state.voice.noiseSupression = false;
+              }
             }
           }
         >
-          <Trans>Enhanced Noise Supression</Trans>
+          <Trans>Enhanced Noise Suppression Powered by RNNoise</Trans>
         </CategoryButton>
         <CategoryButton
           icon="blank"
