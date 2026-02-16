@@ -10,6 +10,7 @@ import {
 import { RoomContext } from "solid-livekit-components";
 
 import { Room, VideoPresets } from "livekit-client";
+import { DenoiseTrackProcessor } from "livekit-rnnoise-processor";
 import { Channel } from "stoat.js";
 
 import { useState } from "@revolt/state";
@@ -108,14 +109,19 @@ class Voice {
       this.#setDeafen(false);
       this.#setVideo(false);
       this.#setScreenshare(false);
+    });
 
+    room.addListener("connected", () => {
+      this.#setState("CONNECTED");
       if (this.speakingPermission)
         room.localParticipant
           .setMicrophoneEnabled(true)
-          .then((track) => this.#setMicrophone(typeof track !== "undefined"));
+          .then((track) => {
+            this.#setMicrophone(typeof track !== "undefined");
+            if (this.#settings.rnnoise)
+              track?.audioTrack?.setProcessor(new DenoiseTrackProcessor());
+          });
     });
-
-    room.addListener("connected", () => this.#setState("CONNECTED"));
 
     room.addListener("disconnected", () => this.#setState("DISCONNECTED"));
 
