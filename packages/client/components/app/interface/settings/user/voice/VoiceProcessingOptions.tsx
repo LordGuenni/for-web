@@ -1,5 +1,5 @@
 import { Trans } from "@lingui-solid/solid/macro";
-
+import { batch } from "solid-js"; 
 import { useState } from "@revolt/state";
 import { CategoryButton, Checkbox, Column, Text } from "@revolt/ui";
 
@@ -19,30 +19,36 @@ export function VoiceProcessingOptions() {
           icon="blank"
           action={<Checkbox checked={state.voice.noiseSupression} />}
           onClick={() => {
-            if (!state.voice.noiseSupression) {
-              state.voice.noiseSupression = true;
-              state.voice.rnnoise = false;
-            } else {
-              state.voice.noiseSupression = false;
-            }
+            batch(() => {
+              const nextValue = !state.voice.noiseSupression;
+              state.voice.noiseSupression = nextValue;
+              // If we turn on Browser suppression, turn off RNNoise
+              if (nextValue) {
+                state.voice.rnnoise = false;
+              }
+            });
           }}
         >
           <Trans>Browser Noise Supression</Trans>
         </CategoryButton>
+        
         <CategoryButton
           icon="blank"
           action={<Checkbox checked={state.voice.rnnoise} />}
           onClick={() => {
-            if (!state.voice.rnnoise) {
-              state.voice.rnnoise = true;
-              state.voice.noiseSupression = false;
-            } else {
-              state.voice.rnnoise = false;
-            }
+            batch(() => {
+              const nextValue = !state.voice.rnnoise;
+              state.voice.rnnoise = nextValue;
+              // If we turn on RNNoise, turn off Browser suppression
+              if (nextValue) {
+                state.voice.noiseSupression = false;
+              }
+            });
           }}
         >
           <Trans>Enhanced Noise Suppression Powered by RNNoise</Trans>
         </CategoryButton>
+
         <CategoryButton
           icon="blank"
           action={<Checkbox checked={state.voice.echoCancellation} />}

@@ -173,8 +173,8 @@ export class Voice extends AbstractStore<"voice", TypeVoice> {
    * Set RNNoise
    */
   set rnnoise(value: boolean) {
-    console.log("[Voice] rnnoise setter called:", value);
     this.set("rnnoise", value);
+    console.log("[Voice] rnnoise setter called:", value);
   }
 
   /**
@@ -223,9 +223,7 @@ export class Voice extends AbstractStore<"voice", TypeVoice> {
    * Get rnnoise
    */
   get rnnoise(): boolean | undefined {
-    const val = this.get().rnnoise;
-    console.log("[Voice] rnnoise getter called:", val);
-    return val;
+    return this.get().rnnoise;
   }
 
   /**
