@@ -19,10 +19,11 @@ export function VoiceProcessingOptions() {
           icon="blank"
           action={<Checkbox checked={state.voice.noiseSupression} />}
           onClick={() => {
-            const newState = !state.voice.noiseSupression;
-            state.voice.noiseSupression = newState;
-            if (newState) {
+            if (!state.voice.noiseSupression) {
+              state.voice.noiseSupression = true;
               state.voice.rnnoise = false;
+            } else {
+              state.voice.noiseSupression = false;
             }
           }}
         >
@@ -32,10 +33,11 @@ export function VoiceProcessingOptions() {
           icon="blank"
           action={<Checkbox checked={state.voice.rnnoise} />}
           onClick={() => {
-            const newState = !state.voice.rnnoise;
-            state.voice.rnnoise = newState;
-            if (newState) {
+            if (!state.voice.rnnoise) {
+              state.voice.rnnoise = true;
               state.voice.noiseSupression = false;
+            } else {
+              state.voice.rnnoise = false;
             }
           }}
         >
