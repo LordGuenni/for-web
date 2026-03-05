@@ -3,6 +3,7 @@ import { Show } from "solid-js";
 import { useLingui } from "@lingui-solid/solid/macro";
 import { styled } from "styled-system/jsx";
 
+import { CONFIGURATION } from "@revolt/common";
 import { useVoice } from "@revolt/rtc";
 import { Button, IconButton } from "@revolt/ui/components/design";
 import { Symbol } from "@revolt/ui/components/utils/Symbol";
@@ -10,6 +11,10 @@ import { Symbol } from "@revolt/ui/components/utils/Symbol";
 export function VoiceCallCardActions(props: { size: "xs" | "sm" }) {
   const voice = useVoice();
   const { t } = useLingui();
+
+  function isVideoEnabled() {
+    return CONFIGURATION.ENABLE_VIDEO;
+  }
 
   return (
     <Actions>
@@ -61,14 +66,21 @@ export function VoiceCallCardActions(props: { size: "xs" | "sm" }) {
       </IconButton>
       <IconButton
         size={props.size}
-        variant={voice.video() ? "filled" : "tonal"}
-        onPress={() => voice.toggleCamera()}
+        variant={isVideoEnabled() && voice.video() ? "filled" : "tonal"}
+        onPress={() => {
+          if (isVideoEnabled()) voice.toggleCamera();
+        }}
         use:floating={{
           tooltip: {
             placement: "top",
-            content: voice.video() ? "Stop Camera" : "Start Camera",
+            content: isVideoEnabled()
+              ? voice.video()
+                ? "Stop Camera"
+                : "Start Camera"
+              : "Coming soon! 👀",
           },
         }}
+        isDisabled={!isVideoEnabled()}
       >
         <Show
           when={voice.video()}
@@ -79,17 +91,24 @@ export function VoiceCallCardActions(props: { size: "xs" | "sm" }) {
       </IconButton>
       <IconButton
         size={props.size}
-        variant={voice.screenshare() ? "filled" : "tonal"}
-        onPress={() => {voice.toggleScreenshare()}}
+        variant={isVideoEnabled() && voice.screenshare() ? "filled" : "tonal"}
+        onPress={() => {
+          if (isVideoEnabled()) voice.toggleScreenshare();
+        }}
         use:floating={{
           tooltip: {
             placement: "top",
-            content: voice.screenshare() ? "Stop Sharing" : "Share Screen",
+            content: isVideoEnabled()
+              ? voice.screenshare()
+                ? "Stop Sharing"
+                : "Share Screen"
+              : "Coming soon! 👀",
           },
         }}
+        isDisabled={!isVideoEnabled()}
       >
         <Show
-          when={voice.screenshare()}
+          when={!isVideoEnabled() || voice.screenshare()}
           fallback={<Symbol>stop_screen_share</Symbol>}
         >
           <Symbol>screen_share</Symbol>
