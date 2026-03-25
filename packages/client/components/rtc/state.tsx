@@ -11,7 +11,6 @@ import { RoomContext } from "solid-livekit-components";
 
 import { Room, VideoPresets } from "livekit-client";
 import { DenoiseTrackProcessor } from "livekit-rnnoise-processor";
-import { DenoiseTrackProcessor } from "livekit-rnnoise-processor";
 import { Channel } from "stoat.js";
 
 import { useState } from "@revolt/state";
