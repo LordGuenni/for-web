@@ -222,8 +222,8 @@ importers:
         specifier: ^2.13.0
         version: 2.15.13(@types/dom-mediacapture-record@1.0.22)
       livekit-rnnoise-processor:
-        specifier: 1.1.1
-        version: 1.1.1
+        specifier: ^2.0.0
+        version: 2.0.0
       localforage:
         specifier: ^1.10.0
         version: 1.10.0
@@ -5474,8 +5474,8 @@ packages:
     peerDependencies:
       '@types/dom-mediacapture-record': ^1
 
-  livekit-rnnoise-processor@1.1.1:
-    resolution: {integrity: sha512-Yg9D2ulYFL5t5uKMUNR18kJj1ozJoCpQ6QFyQ4oVKnhxZp2aul/Og0QpsrtmYMbsSHhIVV4liqHOXhsE9gKU9A==}
+  livekit-rnnoise-processor@2.0.0:
+    resolution: {integrity: sha512-b7r1DzB7ek+3fmc4ccPYeVjV14QVl86aTyj7A9qXIzsGiR6DTNhctQEk5DnlqMxVp7hdG5WBm4A9FHUp4k9jTg==}
 
   lnk@1.1.0:
     resolution: {integrity: sha512-m3q+8W+stYiJYCBwefzrU+inN9h2KxofWuxhNH1iS+MdG9MIKfDpBtbmmIKstVwussx48PXALwonyzuzZUXjQQ==}
@@ -13132,9 +13132,7 @@ snapshots:
       typed-emitter: 2.1.0
       webrtc-adapter: 9.0.3
 
-  livekit-rnnoise-processor@1.1.1:
-    dependencies:
-      compute-lcm: 1.1.2
+  livekit-rnnoise-processor@2.0.0: {}
 
   lnk@1.1.0:
     dependencies:

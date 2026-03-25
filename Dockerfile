@@ -18,6 +18,7 @@ COPY packages/stoat.js/package.json packages/stoat.js/
 COPY packages/solid-livekit-components/package.json packages/solid-livekit-components/
 COPY packages/js-lingui-solid/packages/babel-plugin-lingui-macro/package.json packages/js-lingui-solid/packages/babel-plugin-lingui-macro/
 COPY packages/js-lingui-solid/packages/babel-plugin-extract-messages/package.json packages/js-lingui-solid/packages/babel-plugin-extract-messages/
+COPY packages/js-lingui-solid/packages/jest-mocks/package.json packages/js-lingui-solid/packages/jest-mocks/
 COPY packages/client/package.json packages/client/
 
 # Copy panda config needed by client's "prepare" lifecycle script (panda codegen)
@@ -48,6 +49,7 @@ ENV VITE_MEDIA_URL=__VITE_MEDIA_URL__
 ENV VITE_PROXY_URL=__VITE_PROXY_URL__
 ENV VITE_HCAPTCHA_SITEKEY=__VITE_HCAPTCHA_SITEKEY__
 ENV VITE_CFG_ENABLE_VIDEO=__VITE_CFG_ENABLE_VIDEO__
+ENV VITE_GIFBOX_URL=__VITE_GIFBOX_URL__
 ENV BASE_PATH=/
 
 RUN pnpm --filter client exec vite build
@@ -75,6 +77,7 @@ ENV VITE_MEDIA_URL=""
 ENV VITE_PROXY_URL=""
 ENV VITE_HCAPTCHA_SITEKEY=""
 ENV VITE_CFG_ENABLE_VIDEO=""
+ENV VITE_GIFBOX_URL=""
 ENV REVOLT_PUBLIC_URL=""
 
 CMD ["npm", "start"]

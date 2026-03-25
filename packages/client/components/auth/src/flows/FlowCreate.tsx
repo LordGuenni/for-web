@@ -1,14 +1,13 @@
 import { Trans } from "@lingui-solid/solid/macro";
 
+import { useApi, useClient } from "@revolt/client";
 import { CONFIGURATION } from "@revolt/common";
-import { useNavigate } from "@revolt/routing";
+import { useNavigate, useParams } from "@revolt/routing";
 import { Button, Row, iconSize } from "@revolt/ui";
 
 import MdArrowBack from "@material-design-icons/svg/filled/arrow_back.svg?component-solid";
 
-import { useApi, useClient } from "../../../client";
-
-import { Show, createMemo } from "solid-js";
+import { Show } from "solid-js";
 import { FlowTitle } from "./Flow";
 import { setFlowCheckEmail } from "./FlowCheck";
 import { Fields, Form } from "./Form";
@@ -20,6 +19,7 @@ export default function FlowCreate() {
   const api = useApi();
   const getClient = useClient();
   const navigate = useNavigate();
+  const { code } = useParams();
 
   /**
    * Create an account
@@ -41,21 +41,19 @@ export default function FlowCreate() {
     // FIXME: should tell client if email was sent
     //        or if email even needs to be confirmed
 
-    if (getClient().configuration?.features.email) {
-      setFlowCheckEmail(email);
-      navigate("/login/check", { replace: true });
-    } else {
-      navigate("/login/auth", { replace: true });
-    }
+    // TODO: log straight in if no email confirmation?
+
+    setFlowCheckEmail(email);
+    navigate("/login/check", { replace: true });
   }
 
-  const isInviteOnly = createMemo(() => {
+  const isInviteOnly = () => {
     const client = getClient();
     if (client.configured()) {
       return client.configuration?.features.invite_only;
     }
     return false;
-  });
+  };
 
   return (
     <>
@@ -65,7 +63,11 @@ export default function FlowCreate() {
       <Form onSubmit={create} captcha={CONFIGURATION.HCAPTCHA_SITEKEY}>
         <Fields fields={["email", "password"]} />
         <Show when={isInviteOnly()}>
-          <Fields fields={["invite"]} />
+          <Fields
+            fields={[
+              { field: "invite", value: code, disabled: code?.length > 0 },
+            ]}
+          />
         </Show>
         <Row justify>
           <a href="..">
