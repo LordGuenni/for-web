@@ -10,17 +10,11 @@ import { Checkbox2, Column, Text, TextField } from "@revolt/ui";
  * Available field types
  */
 type Field =
-  |
   | "email"
- 
   | "password"
- 
   | "new-password"
- 
   | "log-out"
- 
   | "username"
-  | "invite"
   | "invite";
 
 /**
